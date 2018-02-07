@@ -26,6 +26,6 @@ while True:# main game loop
     DISPLAYSURF.blit(textSurfaceObj, textRectObj) #Copy the writen surface rectangle into the initial surface
     for event in pygame.event.get():
         if event.type == QUIT:
-        pygame.quit()
-        sys.exit()
+            pygame.quit()
+            sys.exit()
     pygame.display.update()
