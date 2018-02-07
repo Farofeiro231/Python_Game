@@ -4,19 +4,52 @@ from pygame.locals import *
 FPS = 30
 WINWIDTH = 1280
 WINHEIGHT = 720
+PANDAX = 10
+PANDAY = 10
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 BAMBOO = (24, 255, 0)
 
 '''
-Execution of the code of the jumping panda
+Execution of the code of the jumping panda. Pre-configuration of the game window.
 '''
 pygame.init()
-pygame.display.set_icon(pygame.image.load('super_panda.png')) #Changes the icon in the task bar
+
+pygame.display.set_icon(pygame.image.load('images/super_panda.png')) #Changes the icon in the task bar
+fpsClock = pygame.time.Clock()
+
 DISPLAYSURF = pygame.display.set_mode((WINWIDTH, WINHEIGHT))
-DISPLAYSURF.fill(WHITE)
 pygame.display.set_caption('Jumping Panda')
-pygame.display.update()
+
+PANDA = pygame.image.load('images/walking_panda.jpg')
+
+while True:
+    DISPLAYSURF.fill(WHITE)
+
+    for event in pygame.event.get():
+
+        if event.type == KEYDOWN:
+            if event.key in (K_UP, K_w):
+                PANDAY -= 5
+            if event.key in (K_LEFT, K_a):
+                PANDAX -= 5
+            if event.key in (K_RIGHT, K_d):
+                PANDAX += 5
+            if event.key in (K_DOWN, K_s):
+                PANDAY += 5
+
+        DISPLAYSURF.blit(PANDA, (PANDAX, PANDAY))
+
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+
+    pygame.display.update()
+    fpsClock.tick(FPS)
+
+
+
+
 
 pygame.quit()
