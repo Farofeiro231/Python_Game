@@ -6,6 +6,7 @@ WINWIDTH = 1280
 WINHEIGHT = 720
 PANDAX = 10
 PANDAY = 10
+SIZE = 20
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -23,6 +24,7 @@ DISPLAYSURF = pygame.display.set_mode((WINWIDTH, WINHEIGHT))
 pygame.display.set_caption('Jumping Panda')
 
 PANDA = pygame.image.load('images/walking_panda.jpg')
+scaledPanda = pygame.transform.scale(PANDA, (SIZE, SIZE))
 
 while True:
     DISPLAYSURF.fill(WHITE)
@@ -39,7 +41,7 @@ while True:
             if event.key in (K_DOWN, K_s):
                 PANDAY += 5
 
-        DISPLAYSURF.blit(PANDA, (PANDAX, PANDAY))
+        DISPLAYSURF.blit(scaledPanda, (PANDAX, PANDAY))
 
         if event.type == QUIT:
             pygame.quit()
