@@ -6,7 +6,7 @@ WINWIDTH = 400
 WINHEIGHT = 300
 PANDAX = 10
 PANDAY = 10
-SIZE = 50
+SIZE = 80
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -26,6 +26,9 @@ pygame.display.set_caption('Jumping Panda')
 PANDA = pygame.image.load('images/walking_panda.jpg')
 scaledPanda = pygame.transform.scale(PANDA, (SIZE, SIZE))
 
+pygame.mixer.music.load('sounds/triumph.wav') #plays the backgournd sound
+pygame.mixer.music.play(-1, 0.0) #plays it forever (-1) and from the beginning (0.0)
+
 while True:
     DISPLAYSURF.fill(WHITE)
     DISPLAYSURF.blit(scaledPanda, (PANDAX, PANDAY))
@@ -42,6 +45,7 @@ while True:
                 PANDAY += 5
 
         if event.type == QUIT:
+            pygame.mixer.music.stop()
             pygame.quit()
             sys.exit()
 
