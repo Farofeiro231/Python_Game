@@ -9,6 +9,8 @@ PANDAY = 10
 PIGX = 100
 PIGY = 10
 SIZE = 80
+panda_face = 'right'
+pig_face = 'right'
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -39,7 +41,6 @@ while True:
     DISPLAYSURF.blit(scaledPanda, (PANDAX, PANDAY))
     DISPLAYSURF.blit(scaledPig, (PIGX, PIGY))
     for event in pygame.event.get():
-
         if event.type == KEYDOWN:
             if event.key in (K_UP, K_w):
                 PANDAY -= 5
@@ -47,9 +48,19 @@ while True:
             if event.key in (K_LEFT, K_a):
                 PANDAX -= 5
                 PIGX -= 5
+                if panda_face == 'right':
+                    scaledPig = pygame.transform.flip(scaledPig, True, False)
+                    scaledPanda = pygame.transform.flip(scaledPanda, True, False)
+                    panda_face = 'left'
+                    pig_face = 'left'
             if event.key in (K_RIGHT, K_d):
                 PANDAX += 5
                 PIGX += 5
+                if panda_face == 'left':
+                    scaledPig = pygame.transform.flip(scaledPig, True, False)
+                    scaledPanda = pygame.transform.flip(scaledPanda, True, False)
+                    panda_face = 'right'
+                    pig_face = 'right'
             if event.key in (K_DOWN, K_s):
                 PANDAY += 5
                 PIGY += 5
