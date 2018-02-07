@@ -40,32 +40,33 @@ while True:
     DISPLAYSURF.fill(WHITE)
     DISPLAYSURF.blit(scaledPanda, (PANDAX, PANDAY))
     DISPLAYSURF.blit(scaledPig, (PIGX, PIGY))
-    for event in pygame.event.get():
-        if event.type == KEYDOWN:
-            if event.key in (K_UP, K_w):
-                PANDAY -= 5
-                PIGY -= 5
-            if event.key in (K_LEFT, K_a):
-                PANDAX -= 5
-                PIGX -= 5
-                if panda_face == 'right':
-                    scaledPig = pygame.transform.flip(scaledPig, True, False)
-                    scaledPanda = pygame.transform.flip(scaledPanda, True, False)
-                    panda_face = 'left'
-                    pig_face = 'left'
-            if event.key in (K_RIGHT, K_d):
-                PANDAX += 5
-                PIGX += 5
-                if panda_face == 'left':
-                    scaledPig = pygame.transform.flip(scaledPig, True, False)
-                    scaledPanda = pygame.transform.flip(scaledPanda, True, False)
-                    panda_face = 'right'
-                    pig_face = 'right'
-            if event.key in (K_DOWN, K_s):
-                PANDAY += 5
-                PIGY += 5
+    event = pygame.key.get_pressed()
+        #if event.type == KEYDOWN:
+    if event[pygame.K_UP] or event[pygame.K_w]:
+        PANDAY -= 5
+        PIGY -= 5
+    if event[pygame.K_LEFT] or event[pygame.K_a]:
+        PANDAX -= 5
+        PIGX -= 5
+        if panda_face == 'right':
+            scaledPig = pygame.transform.flip(scaledPig, True, False)
+            scaledPanda = pygame.transform.flip(scaledPanda, True, False)
+            panda_face = 'left'
+            pig_face = 'left'
+    if event[pygame.K_RIGHT] or event[pygame.K_d]:
+        PANDAX += 5
+        PIGX += 5
+        if panda_face == 'left':
+            scaledPig = pygame.transform.flip(scaledPig, True, False)
+            scaledPanda = pygame.transform.flip(scaledPanda, True, False)
+            panda_face = 'right'
+            pig_face = 'right'
+    if event[pygame.K_DOWN] or event[pygame.K_s]:
+        PANDAY += 5
+        PIGY += 5
 
-        if event.type == QUIT:
+    for evento in pygame.event.get():
+        if evento.type == QUIT:
             pygame.mixer.music.stop()
             pygame.quit()
             sys.exit()
