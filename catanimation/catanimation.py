@@ -11,8 +11,8 @@ DISPLAYSURF = pygame.display.set_mode((400, 300), 0, 32)
 pygame.display.set_caption('Animation')
 
 WHITE = (255, 255, 255)
-catImg = pygame.image.load('cat.png')
-catx = 10
+catImg = pygame.image.load('cat.png') #We receive here another Surface with the cat within
+catx = 10   #Coordinates of the superior left corner
 caty = 10
 direction = 'right'
 

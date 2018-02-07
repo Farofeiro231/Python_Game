@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="deac4721-e603-4f08-b65f-4407db624834" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/drawing.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/fonttext.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/blankpygame.py" afterPath="$PROJECT_DIR$/blankpygame.py" />
+      <change beforePath="$PROJECT_DIR$/catanimation/catanimation.py" afterPath="$PROJECT_DIR$/catanimation/catanimation.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,11 +27,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="drawing.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="drawing.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/drawing.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="171">
               <caret line="33" column="9" lean-forward="false" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="catanimation.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/catanimation/catanimation.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-69">
+              <caret line="16" column="19" lean-forward="true" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fonttext.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/fonttext.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="24" column="27" lean-forward="true" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -56,6 +80,8 @@
       <list>
         <option value="$PROJECT_DIR$/blankpygame.py" />
         <option value="$PROJECT_DIR$/drawing.py" />
+        <option value="$PROJECT_DIR$/catanimation/catanimation.py" />
+        <option value="$PROJECT_DIR$/fonttext.py" />
       </list>
     </option>
   </component>
@@ -101,7 +127,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/drawing.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/catanimation/catanimation.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -116,7 +142,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.drawing">
+  <component name="RunManager" selected="Python.catanimation">
     <configuration name="blankpy" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -130,6 +156,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="My_RPG" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/blankpygame.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="catanimation" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/catanimation" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="My_RPG" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/catanimation/catanimation.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -153,9 +197,10 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="Python.blankpy" />
-      <item index="1" class="java.lang.String" itemvalue="Python.drawing" />
+    <list size="3">
+      <item index="0" class="java.lang.String" itemvalue="Python.catanimation" />
+      <item index="1" class="java.lang.String" itemvalue="Python.blankpy" />
+      <item index="2" class="java.lang.String" itemvalue="Python.drawing" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -249,6 +294,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="33" column="9" lean-forward="false" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catanimation/catanimation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-69">
+          <caret line="16" column="19" lean-forward="true" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fonttext.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="24" column="27" lean-forward="true" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
