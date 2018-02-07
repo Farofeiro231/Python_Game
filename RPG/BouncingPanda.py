@@ -2,11 +2,11 @@ import pygame, sys
 from pygame.locals import *
 
 FPS = 30
-WINWIDTH = 1280
-WINHEIGHT = 720
+WINWIDTH = 400
+WINHEIGHT = 300
 PANDAX = 10
 PANDAY = 10
-SIZE = 20
+SIZE = 50
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -28,7 +28,7 @@ scaledPanda = pygame.transform.scale(PANDA, (SIZE, SIZE))
 
 while True:
     DISPLAYSURF.fill(WHITE)
-
+    DISPLAYSURF.blit(scaledPanda, (PANDAX, PANDAY))
     for event in pygame.event.get():
 
         if event.type == KEYDOWN:
@@ -40,8 +40,6 @@ while True:
                 PANDAX += 5
             if event.key in (K_DOWN, K_s):
                 PANDAY += 5
-
-        DISPLAYSURF.blit(scaledPanda, (PANDAX, PANDAY))
 
         if event.type == QUIT:
             pygame.quit()

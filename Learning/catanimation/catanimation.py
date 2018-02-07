@@ -42,6 +42,9 @@ while True: # the main game loop
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+        elif event.type == KEYDOWN:
+            if event.key in (K_a, K_LEFT):
+                direction == 'right'
 
     pygame.display.update()
     fpsClock.tick(FPS) # Makes sure that the fps doesn't go over the value in FPS
