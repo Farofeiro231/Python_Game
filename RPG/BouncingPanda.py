@@ -63,7 +63,7 @@ while True:
             scaledPanda = pygame.transform.flip(scaledPanda, True, False)
             panda_face = 'left'
             pig_face = 'left'
-        if PANDA_CAMX <= 0:
+        if PANDA_CAMX <= -SIZE:
             PANDA_CAMX = WINWIDTH + SIZE
     if event[pygame.K_RIGHT] or event[pygame.K_d]:
         PANDAX += 5
