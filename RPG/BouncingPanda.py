@@ -44,33 +44,44 @@ pygame.mixer.music.play(-1, 0.0) #plays it forever (-1) and from the beginning (
 
 while True:
     DISPLAYSURF.fill(WHITE)
-    DISPLAYSURF.blit(scaledPanda, (PANDAX, PANDAY))
+    DISPLAYSURF.blit(scaledPanda, (PANDA_CAMX, PANDA_CAMY))
     DISPLAYSURF.blit(scaledPig, (PIGX, PIGY))
     event = pygame.key.get_pressed()
         #if event.type == KEYDOWN:
     if event[pygame.K_UP] or event[pygame.K_w]:
         PANDAY -= 5
+        PANDA_CAMY -= 5
         PIGY -= 5
+        if PANDA_CAMY <= -SIZE:
+            PANDA_CAMY = WINHEIGHT + SIZE
     if event[pygame.K_LEFT] or event[pygame.K_a]:
         PANDAX -= 5
+        PANDA_CAMX -= 5
         PIGX -= 5
         if panda_face == 'right':
             scaledPig = pygame.transform.flip(scaledPig, True, False)
             scaledPanda = pygame.transform.flip(scaledPanda, True, False)
             panda_face = 'left'
             pig_face = 'left'
+        if PANDA_CAMX <= 0:
+            PANDA_CAMX = WINWIDTH + SIZE
     if event[pygame.K_RIGHT] or event[pygame.K_d]:
         PANDAX += 5
+        PANDA_CAMX += 5
         PIGX += 5
         if panda_face == 'left':
             scaledPig = pygame.transform.flip(scaledPig, True, False)
             scaledPanda = pygame.transform.flip(scaledPanda, True, False)
             panda_face = 'right'
             pig_face = 'right'
+        if PANDA_CAMX >= WINWIDTH:
+            PANDA_CAMX = 0 - SIZE
     if event[pygame.K_DOWN] or event[pygame.K_s]:
         PANDAY += 5
+        PANDA_CAMY += 5
         PIGY += 5
-
+        if PANDA_CAMY >= WINHEIGHT:
+            PANDA_CAMY = 0 - SIZE
     for evento in pygame.event.get():
         if evento.type == QUIT:
             pygame.mixer.music.stop()
