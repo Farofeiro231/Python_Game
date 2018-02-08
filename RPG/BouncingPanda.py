@@ -2,10 +2,12 @@ import pygame, sys
 from pygame.locals import *
 
 FPS = 30
-WINWIDTH = 400
-WINHEIGHT = 300
+WINWIDTH = 640
+WINHEIGHT = 480
 PANDAX = 10
 PANDAY = 10
+PANDA_CAMX = 10
+PANDA_CAMY = 10
 PIGX = 100
 PIGY = 10
 SIZE = 80
@@ -27,8 +29,12 @@ fpsClock = pygame.time.Clock()
 DISPLAYSURF = pygame.display.set_mode((WINWIDTH, WINHEIGHT))
 pygame.display.set_caption('Jumping Panda')
 
-PANDA = pygame.image.load('images/walking_panda.jpg')
-scaledPanda = pygame.transform.scale(PANDA, (SIZE, SIZE))
+PANDA = {'surface': pygame.image.load('images/walking_panda.jpg'),
+         'worldX': PANDAX,
+         'worldY': PANDAY,
+         'camX': PANDA_CAMX,
+         'camY': PANDA_CAMY}
+scaledPanda = pygame.transform.scale(PANDA['surface'], (SIZE, SIZE))
 
 PIG = pygame.image.load('images/super_pig.png')
 scaledPig = pygame.transform.scale(PIG, (SIZE, SIZE))
@@ -74,8 +80,3 @@ while True:
     pygame.display.update()
     fpsClock.tick(FPS)
 
-
-
-
-
-pygame.quit()
