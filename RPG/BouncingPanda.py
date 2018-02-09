@@ -29,7 +29,7 @@ fpsClock = pygame.time.Clock()
 DISPLAYSURF = pygame.display.set_mode((WINWIDTH, WINHEIGHT))
 pygame.display.set_caption('Jumping Panda')
 
-PANDA = {'surface': pygame.image.load('images/walking_panda.jpg'),
+PANDA = {'surface': pygame.image.load('images/hero.png'),
          'worldX': PANDAX,
          'worldY': PANDAY,
          'camX': PANDA_CAMX,
@@ -43,9 +43,9 @@ pygame.mixer.music.load('sounds/triumph.wav') #plays the backgournd sound
 pygame.mixer.music.play(-1, 0.0) #plays it forever (-1) and from the beginning (0.0)
 
 while True:
-    DISPLAYSURF.fill(WHITE)
+    DISPLAYSURF.fill(BAMBOO)
     DISPLAYSURF.blit(scaledPanda, (PANDA_CAMX, PANDA_CAMY))
-    DISPLAYSURF.blit(scaledPig, (PIGX, PIGY))
+    #DISPLAYSURF.blit(scaledPig, (PIGX, PIGY))
     event = pygame.key.get_pressed()
         #if event.type == KEYDOWN:
     if event[pygame.K_UP] or event[pygame.K_w]:
@@ -53,7 +53,7 @@ while True:
         PANDA_CAMY -= 5
         PIGY -= 5
         if PANDA_CAMY <= -SIZE:
-            PANDA_CAMY = WINHEIGHT + SIZE
+            PANDA_CAMY = WINHEIGHT
     if event[pygame.K_LEFT] or event[pygame.K_a]:
         PANDAX -= 5
         PANDA_CAMX -= 5
@@ -64,7 +64,7 @@ while True:
             panda_face = 'left'
             pig_face = 'left'
         if PANDA_CAMX <= -SIZE:
-            PANDA_CAMX = WINWIDTH + SIZE
+            PANDA_CAMX = WINWIDTH
     if event[pygame.K_RIGHT] or event[pygame.K_d]:
         PANDAX += 5
         PANDA_CAMX += 5
