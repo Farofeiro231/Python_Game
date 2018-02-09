@@ -40,23 +40,21 @@ pygame.mixer.music.load('sounds/triumph.wav') #plays the backgournd sound
 pygame.mixer.music.play(-1, 0.0) #plays it forever (-1) and from the beginning (0.0)
 
 while True:
-    HERO_CAMX = CENTER_HEROX - CAMX
-    HERO_CAMY = CENTER_HEROY - CAMY
     DISPLAYSURF.fill(BAMBOO)
     DISPLAYSURF.blit(scaledHero, (HERO_CAMX, HERO_CAMY))
     event = pygame.key.get_pressed()
         #if event.type == KEYDOWN:
     if event[pygame.K_UP] or event[pygame.K_w]:
         CENTER_HEROY -= 5
-        if CENTER_HEROY >= CAMY + WINHEIGHT + CAM_OFFSET:
-            CAMY = CAMY + CAM_OFFSET
+        if CENTER_HEROY < (CAMY + WINHEIGHT/2) - CAM_OFFSET:
+            CAMY += CAM_OFFSET
     if event[pygame.K_LEFT] or event[pygame.K_a]:
         CENTER_HEROX -= 5
         if hero_face == 'right':
             scaledHero = pygame.transform.flip(scaledHero, True, False)
             hero_face = 'left'
-        if CENTER_HEROX <= -SIZE:
-            CAMX = WINWIDTH
+        if CENTER_HEROX < (CAMX + WINWIDTH/2) - CAM_OFFSET:
+            CAMX += CAM_OFFSET
     if event[pygame.K_RIGHT] or event[pygame.K_d]:
         CENTER_HEROX += 5
         if hero_face == 'left':
