@@ -1,11 +1,11 @@
-import pygame, sys
+import pygame, sys, random
 from pygame.locals import *
 
 FPS = 30
 WINWIDTH = 640
 WINHEIGHT = 480
-PANDAX = 10
-PANDAY = 10
+PANDAWORLDX = 10
+PANDAWORLDY = 10
 PANDA_CAMX = 10
 PANDA_CAMY = 10
 PIGX = 100
