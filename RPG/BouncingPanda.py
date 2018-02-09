@@ -8,6 +8,9 @@ HEROWORLDX = 10
 HEROWORLDY = 10
 HERO_CAMX = 10
 HERO_CAMY = 10
+CAMX = 0
+CAMY = 0
+CAM_OFFSET = 90
 SIZE = 80
 hero_face = 'right'
 
@@ -28,45 +31,45 @@ pygame.display.set_caption('Jumping Hero')
 
 HERO = {'surface': pygame.image.load('images/hero.png'),
          'worldX': HEROWORLDX,
-         'worldY': HEROWORLDY,
-         'camX': HERO_CAMX,
-         'camY': HERO_CAMY}
+         'worldY': HEROWORLDY}
 scaledHero = pygame.transform.scale(HERO['surface'], (SIZE, SIZE))
 
 pygame.mixer.music.load('sounds/triumph.wav') #plays the backgournd sound
 pygame.mixer.music.play(-1, 0.0) #plays it forever (-1) and from the beginning (0.0)
 
 while True:
+    HERO_CAMX = HEROWORLDX - CAMX
+    HERO_CAMY = HEROWORLDY - CAMY
     DISPLAYSURF.fill(BAMBOO)
     DISPLAYSURF.blit(scaledHero, (HERO_CAMX, HERO_CAMY))
     event = pygame.key.get_pressed()
         #if event.type == KEYDOWN:
     if event[pygame.K_UP] or event[pygame.K_w]:
         HEROWORLDY -= 5
-        HERO_CAMY -= 5
-        if HERO_CAMY <= -SIZE:
-            HERO_CAMY = WINHEIGHT
+        CAMY -= 5
+        if CAMY <= -SIZE:
+            CAMY = WINHEIGHT
     if event[pygame.K_LEFT] or event[pygame.K_a]:
         HEROWORLDX -= 5
-        HERO_CAMX -= 5
+        CAMX -= 5
         if hero_face == 'right':
             scaledHero = pygame.transform.flip(scaledHero, True, False)
             hero_face = 'left'
-        if HERO_CAMX <= -SIZE:
-            HERO_CAMX = WINWIDTH
+        if CAMX <= -SIZE:
+            CAMX = WINWIDTH
     if event[pygame.K_RIGHT] or event[pygame.K_d]:
         HEROWORLDX += 5
-        HERO_CAMX += 5
+        CAMX += 5
         if hero_face == 'left':
             scaledHero = pygame.transform.flip(scaledHero, True, False)
             hero_face = 'right'
-        if HERO_CAMX >= WINWIDTH:
-            HERO_CAMX = 0 - SIZE
+        if CAMX >= WINWIDTH:
+            CAMX = 0 - SIZE
     if event[pygame.K_DOWN] or event[pygame.K_s]:
         HEROWORLDY += 5
-        HERO_CAMY += 5
-        if HERO_CAMY >= WINHEIGHT:
-            HERO_CAMY = 0 - SIZE
+        CAMY += 5
+        if CAMY >= WINHEIGHT:
+            CAMY = 0 - SIZE
     for evento in pygame.event.get():
         if evento.type == QUIT:
             pygame.mixer.music.stop()
