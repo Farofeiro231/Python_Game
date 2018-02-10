@@ -20,7 +20,7 @@ Execution of the code of the jumping hero. Pre-configuration of the game window.
 '''
 
 def main():
-    global FPSCLOCK, R_HERO, L_HERO, DISPLAYSURF
+    global FPSCLOCK, R_HERO, L_HERO, DISPLAYSURF, TREEIMAGE
     pygame.init()
 
     pygame.display.set_icon(pygame.image.load('images/super_panda.png')) #Changes the icon in the task bar
@@ -32,6 +32,7 @@ def main():
     R_HERO = pygame.image.load('images/hero.png')
     L_HERO = pygame.transform.flip(R_HERO, True, False)
 
+    TREEIMAGE = pygame.image.load('images/tree.png')
 
     while True:
         runGame()
@@ -45,18 +46,32 @@ def runGame():
          'size': SIZE,
          'facing': RIGHT}
 
+    tree = []
     camerax = 0
     cameray = 0
+
+    for i in range(5):
+        tree.append(makeNewTree(camerax,cameray))
 #scaledHero = pygame.transform.scale(hero['surface'], (hero['size'], hero['size']))
 
 #pygame.mixer.music.load('sounds/triumph.wav') #plays the backgournd sound
 #pygame.mixer.music.play(-1, 0.0) #plays it forever (-1) and from the beginning (0.0)
+
+    for trObj in tree:
+        trRect = pygame.Rect( trObj['x'] - camerax,
+                              trObj['y'] - cameray,
+                              trObj['width'],
+                              trObj['height'])
+        DISPLAYSURF.blit(trObj['treeImage'], trRect)
 
     while True:
 
         '''The coordinates system is similar to any other used with multiple referentials.
          First we subtract the world player's position from the world camera's position, then we 
          obtain the player position in the camera referential.'''
+
+
+
         hero['rect'] = pygame.Rect(hero['x'] - camerax,
                                    hero['y'] - cameray,
                                    hero['size'],
@@ -100,6 +115,17 @@ def runGame():
             cameray = heroCentery - CAM_OFFSET - HALF_WINWIDHT
         pygame.display.update()
         FPSCLOCK.tick(FPS)
+
+
+def makeNewTree(camerax, cameray):
+    tr = {}
+    tr['treeImage'] = TREEIMAGE
+    tr['x'] = random.randint(camerax, camerax + WINWIDTH)
+    tr['y'] = random.randint(cameray, cameray + WINHEIGHT)
+    tr['width'] = int(0.5*SIZE)
+    tr['height'] = int(2*SIZE)
+    tr['rect'] = pygame.Rect(tr['x'], tr['y'], tr['width'], tr['height'])
+    return tr
 
 if __name__ == '__main__':
     main()
