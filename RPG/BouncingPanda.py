@@ -59,6 +59,8 @@ def runGame():
 
     while True:
 
+        print("Loop reiniciado")
+        collision = False
         '''The coordinates system is similar to any other used with multiple referentials.
          First we subtract the world player's position from the world camera's position, then we 
          obtain the player position in the camera referential.'''
@@ -85,10 +87,16 @@ def runGame():
         if event[pygame.K_UP] or event[pygame.K_w]:
             hero['y'] -= 5
         if event[pygame.K_LEFT] or event[pygame.K_a]:
-            hero['x'] -= 5
-            if hero['facing'] == RIGHT:
-                hero['surface'] = pygame.transform.scale(L_HERO, (hero['size'], hero['size']))
-                hero['facing'] = LEFT
+            for tr in tree:
+                if tr['rect'].colliderect(hero['rect']):
+                    print("Collision is true\n")
+                    print('lol\n')
+                    collision = True
+            if not collision:
+                hero['x'] -= 5
+                if hero['facing'] == RIGHT:
+                    hero['surface'] = pygame.transform.scale(L_HERO, (hero['size'], hero['size']))
+                    hero['facing'] = LEFT
         if event[pygame.K_RIGHT] or event[pygame.K_d]:
             hero['x'] += 5
             if hero['facing'] == LEFT:
