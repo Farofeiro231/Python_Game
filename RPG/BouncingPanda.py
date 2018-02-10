@@ -17,7 +17,11 @@ BAMBOO = (24, 255, 0)
 '''
 Execution of the code of the jumping hero. Pre-configuration of the game window.
 '''
+global R_HERO, L_HERO
 pygame.init()
+
+camerax = 0
+cameray = 0
 
 pygame.display.set_icon(pygame.image.load('images/super_panda.png')) #Changes the icon in the task bar
 fpsClock = pygame.time.Clock()
@@ -25,7 +29,10 @@ fpsClock = pygame.time.Clock()
 DISPLAYSURF = pygame.display.set_mode((WINWIDTH, WINHEIGHT))
 pygame.display.set_caption('Jumping Hero')
 
-hero = {'surface': pygame.image.load('images/hero.png'),
+R_HERO = pygame.image.load('images/hero.png')
+L_HERO = pygame.transform.flip(R_HERO, True, False)
+
+hero = {'surface': pygame.transform.scale(R_HERO, (SIZE, SIZE)),
          'x': HEROWORLDX,
          'y': HEROWORLDY,
          'size': SIZE}
@@ -35,36 +42,33 @@ scaledHero = pygame.transform.scale(hero['surface'], (hero['size'], hero['size']
 #pygame.mixer.music.play(-1, 0.0) #plays it forever (-1) and from the beginning (0.0)
 
 while True:
+
+    '''The coordinates system is similar to any other used with multiple referentials.
+     First we subtract the world player's position from the world camera's position, then we 
+     obtain the player position in the camera referential.'''
+    hero['rect'] = pygame.Rect(hero['x'] - camerax,
+                               hero['y'] - cameray,
+                               hero['size'],
+                               hero['size'])
+
     DISPLAYSURF.fill(BAMBOO)
-    DISPLAYSURF.blit(scaledHero, (HERO_CAMX, HERO_CAMY))
+    DISPLAYSURF.blit(scaledHero, hero['rect'])
     event = pygame.key.get_pressed()
         #if event.type == KEYDOWN:
     if event[pygame.K_UP] or event[pygame.K_w]:
         hero['y'] -= 5
-        if CENTER_HEROY < (CAMY + WINHEIGHT/2) - CAM_OFFSET:
-            HERO_CAMX = CENTER_HEROX - CAMX
-            HERO_CAMY = CENTER_HEROY - CAMY
-            CAMY += CAM_OFFSET
     if event[pygame.K_LEFT] or event[pygame.K_a]:
         hero['x'] -= 5
         if hero_face == 'right':
             scaledHero = pygame.transform.flip(scaledHero, True, False)
             hero_face = 'left'
-        if CENTER_HEROX < (CAMX + WINWIDTH/2) - CAM_OFFSET:
-            HERO_CAMX = CENTER_HEROX - CAMX
-            HERO_CAMY = CENTER_HEROY - CAMY
-            CAMX += CAM_OFFSET
     if event[pygame.K_RIGHT] or event[pygame.K_d]:
         hero['x'] += 5
         if hero_face == 'left':
             scaledHero = pygame.transform.flip(scaledHero, True, False)
             hero_face = 'right'
-        if CAMX >= WINWIDTH:
-            CAMX = 0 - SIZE
     if event[pygame.K_DOWN] or event[pygame.K_s]:
         hero['y'] += 5
-        if CAMY >= WINHEIGHT:
-            CAMY = 0 - SIZE
     for evento in pygame.event.get():
         if evento.type == QUIT:
             pygame.mixer.music.stop()
