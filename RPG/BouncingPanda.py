@@ -52,6 +52,9 @@ def runGame():
 
     for i in range(5):
         tree.append(makeNewTree(camerax,cameray))
+
+    for tr in tree:
+            pygame.draw.rect(DISPLAYSURF, WHITE, tr['rect'])
 #scaledHero = pygame.transform.scale(hero['surface'], (hero['size'], hero['size']))
 
 #pygame.mixer.music.load('sounds/triumph.wav') #plays the backgournd sound
@@ -62,7 +65,7 @@ def runGame():
         print("Loop reiniciado")
         collision = False
         '''The coordinates system is similar to any other used with multiple referentials.
-         First we subtract the world player's position from the world camera's position, then we 
+         First we subtract the world player's position from the world camera's position, then we
          obtain the player position in the camera referential.'''
 
 
@@ -74,23 +77,27 @@ def runGame():
 
         DISPLAYSURF.fill(BAMBOO)
         DISPLAYSURF.blit(hero['surface'], hero['rect'])
+        pygame.draw.rect(DISPLAYSURF, WHITE, hero['rect'])
 
         for trObj in tree:
-            trRect = pygame.Rect( trObj['x'] - camerax,
+            trObj['rect'] = pygame.Rect( trObj['x'] - camerax,
                                   trObj['y'] - cameray,
                                   trObj['width'],
                                   trObj['height'])
-            DISPLAYSURF.blit(trObj['treeImage'], trRect)
+            DISPLAYSURF.blit(trObj['treeImage'], trObj['rect'])
+            pygame.draw.rect(DISPLAYSURF, WHITE, trObj['rect'])
 
         event = pygame.key.get_pressed()
             #if event.type == KEYDOWN:
         if event[pygame.K_UP] or event[pygame.K_w]:
-            hero['y'] -= 5
+            for tr in tree:
+                if tr['rect'].colliderect(hero['rect']):
+                    collision = True
+            if not collision:
+                hero['y'] -= 5
         if event[pygame.K_LEFT] or event[pygame.K_a]:
             for tr in tree:
                 if tr['rect'].colliderect(hero['rect']):
-                    print("Collision is true\n")
-                    print('lol\n')
                     collision = True
             if not collision:
                 hero['x'] -= 5
@@ -98,12 +105,20 @@ def runGame():
                     hero['surface'] = pygame.transform.scale(L_HERO, (hero['size'], hero['size']))
                     hero['facing'] = LEFT
         if event[pygame.K_RIGHT] or event[pygame.K_d]:
-            hero['x'] += 5
+            for tr in tree:
+                if tr['rect'].colliderect(hero['rect']):
+                    collision = True
+            if not collision:
+                hero['x'] += 5
             if hero['facing'] == LEFT:
                 hero['surface'] = pygame.transform.scale(R_HERO, (hero['size'], hero['size']))
                 hero['facing'] = RIGHT
         if event[pygame.K_DOWN] or event[pygame.K_s]:
-            hero['y'] += 5
+            for tr in tree:
+                if tr['rect'].colliderect(hero['rect']):
+                    collision = True
+            if not collision:
+                hero['y'] += 5
 
         for evento in pygame.event.get():
             if evento.type == QUIT:
