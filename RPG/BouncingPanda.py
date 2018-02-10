@@ -41,8 +41,8 @@ def main():
 def runGame():
 
     hero = {'surface': pygame.transform.scale(R_HERO, (SIZE, SIZE)),
-         'x': HALF_WINWIDHT,
-         'y': HALF_WINHEIGHT,
+         'x': HALF_WINWIDHT - int(SIZE/2),
+         'y': HALF_WINHEIGHT - int(SIZE/2),
          'size': SIZE,
          'facing': RIGHT}
 
@@ -110,10 +110,10 @@ def runGame():
             camerax = heroCenterx + CAM_OFFSET - HALF_WINWIDHT
         elif heroCenterx - (camerax + HALF_WINWIDHT) > CAM_OFFSET:
             camerax = heroCenterx - CAM_OFFSET - HALF_WINWIDHT
-        if (cameray + HALF_WINWIDHT) - heroCentery > CAM_OFFSET:
-            cameray = heroCentery + CAM_OFFSET - HALF_WINWIDHT
-        elif heroCentery - (cameray + HALF_WINWIDHT) > CAM_OFFSET:
-            cameray = heroCentery - CAM_OFFSET - HALF_WINWIDHT
+        if (cameray + HALF_WINHEIGHT) - heroCentery > CAM_OFFSET:
+            cameray = heroCentery + CAM_OFFSET - HALF_WINHEIGHT
+        elif heroCentery - (cameray + HALF_WINHEIGHT) > CAM_OFFSET:
+            cameray = heroCentery - CAM_OFFSET - HALF_WINHEIGHT
         pygame.display.update()
         FPSCLOCK.tick(FPS)
 
