@@ -5,14 +5,8 @@ FPS = 30
 WINWIDTH = 640
 WINHEIGHT = 480
 SIZE = 80
-HEROWORLDX = WINWIDTH/2
-HEROWORLDY = WINHEIGHT/2
-CENTER_HEROX = HEROWORLDX - SIZE/2
-CENTER_HEROY = HEROWORLDY - SIZE/2
-HERO_CAMX = 10
-HERO_CAMY = 10
-CAMX = 0
-CAMY = 0
+HEROWORLDX = int(WINWIDTH/2)
+HEROWORLDY = int(WINHEIGHT/2)
 CAM_OFFSET = 90
 hero_face = 'right'
 
@@ -31,13 +25,14 @@ fpsClock = pygame.time.Clock()
 DISPLAYSURF = pygame.display.set_mode((WINWIDTH, WINHEIGHT))
 pygame.display.set_caption('Jumping Hero')
 
-HERO = {'surface': pygame.image.load('images/hero.png'),
-         'worldX': CENTER_HEROX,
-         'worldY': CENTER_HEROY}
-scaledHero = pygame.transform.scale(HERO['surface'], (SIZE, SIZE))
+hero = {'surface': pygame.image.load('images/hero.png'),
+         'x': HEROWORLDX,
+         'y': HEROWORLDY,
+         'size': SIZE}
+scaledHero = pygame.transform.scale(hero['surface'], (hero['size'], hero['size']))
 
-pygame.mixer.music.load('sounds/triumph.wav') #plays the backgournd sound
-pygame.mixer.music.play(-1, 0.0) #plays it forever (-1) and from the beginning (0.0)
+#pygame.mixer.music.load('sounds/triumph.wav') #plays the backgournd sound
+#pygame.mixer.music.play(-1, 0.0) #plays it forever (-1) and from the beginning (0.0)
 
 while True:
     DISPLAYSURF.fill(BAMBOO)
@@ -45,25 +40,29 @@ while True:
     event = pygame.key.get_pressed()
         #if event.type == KEYDOWN:
     if event[pygame.K_UP] or event[pygame.K_w]:
-        CENTER_HEROY -= 5
+        hero['y'] -= 5
         if CENTER_HEROY < (CAMY + WINHEIGHT/2) - CAM_OFFSET:
+            HERO_CAMX = CENTER_HEROX - CAMX
+            HERO_CAMY = CENTER_HEROY - CAMY
             CAMY += CAM_OFFSET
     if event[pygame.K_LEFT] or event[pygame.K_a]:
-        CENTER_HEROX -= 5
+        hero['x'] -= 5
         if hero_face == 'right':
             scaledHero = pygame.transform.flip(scaledHero, True, False)
             hero_face = 'left'
         if CENTER_HEROX < (CAMX + WINWIDTH/2) - CAM_OFFSET:
+            HERO_CAMX = CENTER_HEROX - CAMX
+            HERO_CAMY = CENTER_HEROY - CAMY
             CAMX += CAM_OFFSET
     if event[pygame.K_RIGHT] or event[pygame.K_d]:
-        CENTER_HEROX += 5
+        hero['x'] += 5
         if hero_face == 'left':
             scaledHero = pygame.transform.flip(scaledHero, True, False)
             hero_face = 'right'
         if CAMX >= WINWIDTH:
             CAMX = 0 - SIZE
     if event[pygame.K_DOWN] or event[pygame.K_s]:
-        CENTER_HEROY += 5
+        hero['y'] += 5
         if CAMY >= WINHEIGHT:
             CAMY = 0 - SIZE
     for evento in pygame.event.get():
