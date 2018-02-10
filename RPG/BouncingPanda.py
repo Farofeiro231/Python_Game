@@ -4,9 +4,9 @@ from pygame.locals import *
 FPS = 30
 WINWIDTH = 640
 WINHEIGHT = 480
+HALF_WINWIDHT = int(WINWIDTH/2)
+HALF_WINHEIGHT = int(WINHEIGHT/2)
 SIZE = 80
-HEROWORLDX = int(WINWIDTH/2)
-HEROWORLDY = int(WINHEIGHT/2)
 CAM_OFFSET = 90
 hero_face = 'right'
 
@@ -33,10 +33,10 @@ R_HERO = pygame.image.load('images/hero.png')
 L_HERO = pygame.transform.flip(R_HERO, True, False)
 
 hero = {'surface': pygame.transform.scale(R_HERO, (SIZE, SIZE)),
-         'x': HEROWORLDX,
-         'y': HEROWORLDY,
+         'x': HALF_WINWIDHT,
+         'y': HALF_WINHEIGHT,
          'size': SIZE}
-scaledHero = pygame.transform.scale(hero['surface'], (hero['size'], hero['size']))
+#scaledHero = pygame.transform.scale(hero['surface'], (hero['size'], hero['size']))
 
 #pygame.mixer.music.load('sounds/triumph.wav') #plays the backgournd sound
 #pygame.mixer.music.play(-1, 0.0) #plays it forever (-1) and from the beginning (0.0)
@@ -52,7 +52,7 @@ while True:
                                hero['size'])
 
     DISPLAYSURF.fill(BAMBOO)
-    DISPLAYSURF.blit(scaledHero, hero['rect'])
+    DISPLAYSURF.blit(hero['surface'], hero['rect'])
     event = pygame.key.get_pressed()
         #if event.type == KEYDOWN:
     if event[pygame.K_UP] or event[pygame.K_w]:
@@ -69,12 +69,24 @@ while True:
             hero_face = 'right'
     if event[pygame.K_DOWN] or event[pygame.K_s]:
         hero['y'] += 5
+
     for evento in pygame.event.get():
         if evento.type == QUIT:
             pygame.mixer.music.stop()
             pygame.quit()
             sys.exit()
 
+    heroCenterx = hero['x'] + int(hero['size']/2)
+    heroCentery = hero['y'] + int(hero['size']/2)
+
+    if (camerax + HALF_WINWIDHT) - heroCenterx > CAM_OFFSET:
+        camerax = heroCenterx + CAM_OFFSET - HALF_WINWIDHT
+    elif heroCenterx - (camerax + HALF_WINWIDHT) > CAM_OFFSET:
+        camerax = heroCenterx - CAM_OFFSET - HALF_WINWIDHT
+    if (cameray + HALF_WINWIDHT) - heroCentery > CAM_OFFSET:
+        cameray = heroCentery + CAM_OFFSET - HALF_WINWIDHT
+    elif heroCentery - (cameray + HALF_WINWIDHT) > CAM_OFFSET:
+        cameray = heroCentery - CAM_OFFSET - HALF_WINWIDHT
     pygame.display.update()
     fpsClock.tick(FPS)
 
