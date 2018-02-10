@@ -57,13 +57,6 @@ def runGame():
 #pygame.mixer.music.load('sounds/triumph.wav') #plays the backgournd sound
 #pygame.mixer.music.play(-1, 0.0) #plays it forever (-1) and from the beginning (0.0)
 
-    for trObj in tree:
-        trRect = pygame.Rect( trObj['x'] - camerax,
-                              trObj['y'] - cameray,
-                              trObj['width'],
-                              trObj['height'])
-        DISPLAYSURF.blit(trObj['treeImage'], trRect)
-
     while True:
 
         '''The coordinates system is similar to any other used with multiple referentials.
@@ -79,6 +72,14 @@ def runGame():
 
         DISPLAYSURF.fill(BAMBOO)
         DISPLAYSURF.blit(hero['surface'], hero['rect'])
+
+        for trObj in tree:
+            trRect = pygame.Rect( trObj['x'] - camerax,
+                                  trObj['y'] - cameray,
+                                  trObj['width'],
+                                  trObj['height'])
+            DISPLAYSURF.blit(trObj['treeImage'], trRect)
+
         event = pygame.key.get_pressed()
             #if event.type == KEYDOWN:
         if event[pygame.K_UP] or event[pygame.K_w]:
