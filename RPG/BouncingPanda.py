@@ -98,10 +98,10 @@ def runGame():
         for tr in tree:
             if tr['rect'].colliderect(hero['rect']):
                 collision['state'] = True
-            for point in range(hero['x'], hero['x'] + hero['size'], 1):
-                if tr['rect'].collidepoint(point, hero['y']):
-                    collision['up'] += 1
-                    print(collision['up'])
+                for point in range(hero['x'], hero['x'] + hero['size'], 1):
+                    if tr['rect'].collidepoint(point, hero['y']):
+                        collision['up'] += 1
+                        print("Collision['up'] = ", collision['up'])
 
         event = pygame.key.get_pressed()
         if event[pygame.K_UP] or event[pygame.K_w]:
