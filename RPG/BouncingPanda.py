@@ -96,6 +96,13 @@ def runGame():
 
         event = pygame.key.get_pressed()
             #if event.type == KEYDOWN:
+
+        for tr in tree:
+            if tr['rect'].colliderect(hero['rect']):
+                collision['state'] = True
+            for point in range(hero['x'], hero['x'] + hero['size']):
+                if tr['rect'].collidepoint(point)
+
         if event[pygame.K_UP] or event[pygame.K_w]:
             for tr in tree:
                 if tr['rect'].colliderect(hero['rect']):
