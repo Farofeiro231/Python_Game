@@ -52,7 +52,7 @@ def runGame():
     camerax = 0
     cameray = 0
 
-    for i in range(5):
+    for i in range(1):
         tree.append(makeNewTree(camerax,cameray))
 
     for tr in tree:
@@ -88,7 +88,7 @@ def runGame():
         pygame.draw.rect(DISPLAYSURF, WHITE, hero['rect'])
 
         for trObj in tree:
-            trObj['rect'] = pygame.Rect( trObj['x'] - camerax,
+            trObj['rect'] = pygame.Rect(trObj['x'] - camerax,
                                   trObj['y'] - cameray,
                                   trObj['width'],
                                   trObj['height'])
@@ -102,6 +102,13 @@ def runGame():
                     if tr['rect'].collidepoint(point, hero['y']):
                         collision['up'] += 1
                         print("Collision['up'] = ", collision['up'])
+                    if tr['rect'].collidepoint(point, hero['y'] + hero['size']):
+                        collision['down'] += 1
+                for point in range(hero['y'], hero['y'] + hero['size']):
+                    if tr['rect'].collidepoint(hero['x'], point):
+                        collision['left'] += 1
+                    if tr['rect'].collidepoint(hero['x'] + hero['size'], point):
+                        collision['right'] += 1
 
         event = pygame.key.get_pressed()
         if event[pygame.K_UP] or event[pygame.K_w]:
